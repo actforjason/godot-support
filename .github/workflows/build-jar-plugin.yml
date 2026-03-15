@@ -1,13 +1,9 @@
 name: build-jar-plugin
 
-on:
-  workflow_dispatch:
+on: [push, workflow_dispatch]
       
 jobs:
   build:
-    defaults:
-      run:
-        working-directory: gdscript
     name: Build
     runs-on: ubuntu-latest
     steps:
@@ -25,14 +21,15 @@ jobs:
 
       - name: Build community
         working-directory: community
-        run: ./gradlew buildPlugin -x buildSearchableOptions
+        run: ./gradlew buildPlugin
       
       - name: Build gdscript
         working-directory: gdscript
-        run: ./gradlew buildPlugin -x buildSearchableOptions
+        run: ./gradlew buildPlugin
 
       # Store an already-built plugin as an artifact for downloading
       - name: Upload artifact
         uses: actions/upload-artifact@v7
         with:
-          path: ./build/libs/
+          name: gdscript-plugin
+          path: gdscript/build/distributions/*
