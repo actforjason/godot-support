@@ -19,7 +19,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: community/build
-          key: community-${{ hashFiles('community/**/*.gradle*') }}
+          key: community-${{ hashFiles('community/**/*.zip*') }}
           
       - name: Build community
         working-directory: community
