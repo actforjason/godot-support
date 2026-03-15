@@ -17,7 +17,12 @@ jobs:
 
       - name: Build community
         working-directory: community
-        run: ./gradlew buildPlugin
+        run: |
+          if [ ! -f build/distributions/rider-godot-community.zip ]; then
+            ./gradlew buildPlugin
+          else
+            echo "skip community build"
+          fi
       
       - name: Build gdscript
         working-directory: gdscript
