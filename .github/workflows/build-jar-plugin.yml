@@ -15,6 +15,12 @@ jobs:
           java -version
           gradle -v
 
+      - name: Cache community build
+        uses: actions/cache@v4
+        with:
+          path: community/build
+          key: community-${{ hashFiles('community/**/*.gradle*') }}
+          
       - name: Build community
         working-directory: community
         run: |
