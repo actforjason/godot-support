@@ -1,0 +1,31 @@
+name: build-jar-plugin
+
+jobs:
+  build:
+    defaults:
+      run:
+        working-directory: gdscript
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v5
+        with:
+          distribution: zulu
+          java-version: 21
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v5
+
+      - name: Build Plugin
+        env:
+        run: ./gradlew buildPlugin
+
+      # Store an already-built plugin as an artifact for downloading
+      - name: Upload artifact
+        uses: actions/upload-artifact@v7
+        with:
+          path: ./build/libs/
