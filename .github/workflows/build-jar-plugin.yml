@@ -19,7 +19,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: community/build
-          key: community-${{ hashFiles('community/**/*.zip*') }}
+          key: rider-godot-community.zip-${{ hashFiles('**/**/rider-godot-community.zip') }}
           
       - name: Build community
         working-directory: community
