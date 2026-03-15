@@ -38,5 +38,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v7
         with:
-          name: gdscript-plugin
-          path: gdscript/build/distributions/*
+          name: community & gdscript
+          path: |
+           community/build/distributions/rider-godot-community.zip
+           gdscript/build/distributions/*
