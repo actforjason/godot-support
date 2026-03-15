@@ -1,5 +1,7 @@
 name: build-jar-plugin
 
+on: [push, pull_request]
+      
 jobs:
   build:
     defaults:
@@ -21,7 +23,6 @@ jobs:
         uses: gradle/actions/setup-gradle@v5
 
       - name: Build Plugin
-        env:
         run: ./gradlew buildPlugin
 
       # Store an already-built plugin as an artifact for downloading
