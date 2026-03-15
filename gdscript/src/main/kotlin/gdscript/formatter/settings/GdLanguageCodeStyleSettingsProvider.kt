@@ -24,6 +24,8 @@ class GdLanguageCodeStyleSettingsProvider : LanguageCodeStyleSettingsProvider() 
 
     override fun customizeDefaults(commonSettings: CommonCodeStyleSettings, indentOptions: CommonCodeStyleSettings.IndentOptions) {
         indentOptions.USE_TAB_CHARACTER = true
+        commonSettings.LINE_COMMENT_AT_FIRST_COLUMN = false
+        commonSettings.BLOCK_COMMENT_AT_FIRST_COLUMN = false
         super.customizeDefaults(commonSettings, indentOptions)
     }
 
