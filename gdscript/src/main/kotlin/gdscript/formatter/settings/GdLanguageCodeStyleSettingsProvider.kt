@@ -23,7 +23,7 @@ class GdLanguageCodeStyleSettingsProvider : LanguageCodeStyleSettingsProvider() 
     }
 
     override fun customizeDefaults(commonSettings: CommonCodeStyleSettings, indentOptions: CommonCodeStyleSettings.IndentOptions) {
-        // super.customizeDefaults(commonSettings, indentOptions)
+        super.customizeDefaults(commonSettings, indentOptions)
         indentOptions.USE_TAB_CHARACTER = true
         commonSettings.LINE_COMMENT_AT_FIRST_COLUMN = false
         commonSettings.BLOCK_COMMENT_AT_FIRST_COLUMN = false
@@ -56,6 +56,14 @@ class GdLanguageCodeStyleSettingsProvider : LanguageCodeStyleSettingsProvider() 
 
             SettingsType.COMMENTER_SETTINGS -> {
                 /* TODO */
+                consumer.showStandardOptions(
+                    "LINE_COMMENT_ADD_SPACE",
+                    "LINE_COMMENT_ADD_SPACE_ON_REFORMAT",
+                    "LINE_COMMENT_AT_FIRST_COLUMN",
+                    "BLOCK_COMMENT_AT_FIRST_COLUMN",
+                    "BLOCK_COMMENT_ADD_SPACE"
+                );
+                return;
             }
 
             SettingsType.LANGUAGE_SPECIFIC -> {
