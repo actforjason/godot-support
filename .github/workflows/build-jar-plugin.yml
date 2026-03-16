@@ -15,20 +15,25 @@ jobs:
           java -version
           gradle -v
 
-      # - name: Cache community build
-      #   uses: actions/cache@v4
-      #   with:
-      #     path: community/build
-      #     key: rider-godot-community.zip-${{ hashFiles('**/**/rider-godot-community.zip') }}
+      - name: 缓存 Gradle 构建目录
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+            community/build/  # 缓存构建产物
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
           
-      # - name: Build community
-      #   working-directory: community
-      #   run: |
-      #     if [ ! -f build/distributions/rider-godot-community.zip ]; then
-      #       ./gradlew buildPlugin
-      #     else
-      #       echo "skip community build"
-      #     fi
+      - name: Build community
+        working-directory: community
+        run: |
+          if [ ! -f build/distributions/rider-godot-community.zip ]; then
+            ./gradlew buildPlugin
+          else
+            echo "skip community build"
+          fi
       
       - name: Build gdscript
         working-directory: gdscript
